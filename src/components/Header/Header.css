@@ -8,8 +8,9 @@
     margin-right: 24px;
 }
 
-.heade__date-and-location {
+.header__date-and-location {
     margin: 0;
+    font-family: "CabinetGrotesk" ariel, sans-serif;
 }
 
 .header__add-clothes-btn {
