@@ -25,6 +25,7 @@
 }
 
 .modal__title {
+    font-family: "CabinetGrotesk", serif;
     margin: 0;
     font-size: 16px;
     line-height: 20px;
@@ -70,18 +71,30 @@
 }
 
 .modal__label {
+    font-family: "CabinetGrotesk", serif;
     margin-bottom: 8px;
 }
 
+.modal__link {
+    font-family: "CabinetGrotesk", serif;
+}
+
 .modal__legend {
+    font-family: "CabinetGrotesk", serif;
     margin-bottom: 12px;
 }
 
 .modal__submit {
+    font-family: "CabinetGrotesk", serif;
+    color: #ffffff;
+    background-color: #0000004D;
     width: 124px;
     height: 36px;
     top: 557px;
     left: 500px;
     gap: 12px;
     margin-top: 32px;
+    border: none;
+    border-radius: 4px;
+
 }
