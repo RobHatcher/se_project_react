@@ -87,7 +87,7 @@
 .modal__submit {
     font-family: "CabinetGrotesk", serif;
     color: #ffffff;
-    background-color: #0000004D;
+    background-color: #000000;
     width: 124px;
     height: 36px;
     top: 557px;
@@ -96,5 +96,8 @@
     margin-top: 32px;
     border: none;
     border-radius: 4px;
+}
 
+.modal__submit:hover {
+    background-color: #0000006d;
 }
