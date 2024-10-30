@@ -1,11 +1,11 @@
+import React from "react";
 import "./WeatherCard.css";
 import sunny from "../../assets/sunny.png";
-import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 
-function WeatherCard({ weatherData }) {
+function WeatherCard({ weatherData, currentTemperatureUnit }) {
   return (
     <section className="weather-card">
-      <p className="weather-card__temp">{weatherData.temp.F} &deg; F</p>
+      <p className="weather-card__temp">{weatherData.temp[currentTemperatureUnit]} &deg; {currentTemperatureUnit}</p>
       <img src={sunny} alt="sunny" className="weather-card__image" />
     </section>
   );
