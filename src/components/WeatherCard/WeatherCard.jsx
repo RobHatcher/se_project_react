@@ -1,5 +1,6 @@
 import "./WeatherCard.css";
 import sunny from "../../assets/sunny.png";
+import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 
 function WeatherCard({ weatherData }) {
   return (

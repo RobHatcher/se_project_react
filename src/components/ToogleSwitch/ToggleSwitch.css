@@ -37,20 +37,20 @@
 .switch__temp-F {
     position: absolute;
     margin-left: 600px;
-    top: -10px;
-    left: 39px;
-    color: white;
+    top: -8px;
+    left: 37px;
+    color: #F3F3F3;
 }
 
 .switch__temp-C {
     position: absolute;
     margin-left: 600px;
     top: -8px;
-    left: 11px;
-    color: white;
+    left: 10px;
+    color: #F3F3F3;
 }
 
 .switch__active {
-    color: white;
+    color: #F3F3F3;
     font-size: 14px;
 }
