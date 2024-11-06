@@ -5,12 +5,17 @@ import "./App.css";
 import { coordinates, APIkey } from "../../utils/constants";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
-// import Profile from "../Profile/Profile";
+import Profile from "../Profile/Profile";
 import ItemModal from "../ItemModal/ItemModal";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import Footer from "../Footer/Footer";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 import AddItemModal from "../AddItemModal/AddItemModal";
+import {
+  addClothingItem,
+  deleteClothingItem,
+  getClothingItems,
+} from "../../utils/api";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -21,6 +26,7 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
+  const [clothingItems, setClothingItems] = useState([]);
 
   const handleCardClick = (card) => {
     setActiveModal("preview");
@@ -35,8 +41,24 @@ function App() {
     setActiveModal("");
   };
 
-  const onAddItem = (values) => {
-    console.log(values);
+  const onAddItem = ({ name, imageUrl, weather }) => {
+    addClothingItem({ name, imageUrl, weather })
+      .then((data) => {
+        setClothingItems((prev) => [data, ...prev]);
+        closeActiveModal();
+      })
+      .catch(console.error);
+  };
+
+  function onDeleteItem() {
+    deleteClothingItem(selectedCard)
+      .then((data) => {
+        getClothingItems().then((data) => {
+          setClothingItems(data);
+          closeActiveModal();
+        });
+      })
+      .catch(console.error);
   }
 
   const handleToggleSwitchChange = () => {
@@ -54,6 +76,14 @@ function App() {
       .catch(console.error);
   }, []);
 
+  useEffect(() => {
+    getClothingItems()
+      .then((data) => {
+        setClothingItems(data);
+      })
+      .catch(console.error);
+  }, []);
+
   return (
     <div className="page">
       <CurrentTemperatureUnitContext.Provider
@@ -61,11 +91,30 @@ function App() {
       >
         <div className="page__content">
           <Header handleAddClick={handleAddClick} weatherData={weatherData} />
-          <Main
-            weatherData={weatherData}
-            handleCardClick={handleCardClick}
-            currentTemperatureUnit={currentTemperatureUnit}
-          />
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Main
+                  weatherData={weatherData}
+                  onCardClick={handleCardClick}
+                  currentTemperatureUnit={currentTemperatureUnit}
+                  clothingItems={clothingItems}
+                />
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <Profile
+                  onCardClick={handleCardClick}
+                  clothingItems={clothingItems}
+                  handleAddClick={handleAddClick}
+                />
+              }
+            />
+          </Routes>
+          <Footer />
         </div>
         <AddItemModal
           closeActiveModal={closeActiveModal}
@@ -76,8 +125,8 @@ function App() {
           activeModal={activeModal}
           card={selectedCard}
           onClose={closeActiveModal}
+          onDelete={onDeleteItem}
         />
-        <Footer />
       </CurrentTemperatureUnitContext.Provider>
     </div>
   );
