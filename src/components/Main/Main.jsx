@@ -1,7 +1,7 @@
 import "./Main.css";
 import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
-// import { defaultClothingItems } from "../../utils/constants";
+
 
 function Main({ weatherData, onCardClick, currentTemperatureUnit, clothingItems }) {
   return (
@@ -22,6 +22,7 @@ function Main({ weatherData, onCardClick, currentTemperatureUnit, clothingItems 
                   key={item._id}
                   item={item}
                   onCardClick={onCardClick}
+                  clothingItems={clothingItems}
                 />
               );
             })}
