@@ -11,6 +11,11 @@
     height: 498px;
     border-top-left-radius: 16px;;
     border-top-right-radius: 16px;
+    object-fit: cover;
+}
+
+.modal__content_type_image {
+    padding: 0;
 }
 
 .modal__close-icon {
@@ -36,4 +41,21 @@
     font-size: 20px;
     line-height: 24px;
     font-weight: 700;
+}
+
+.modal__delete-item-button {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 24px;
+    border: none;
+    color: #ff4d00;
+    position: absolute;
+    bottom: 68px;
+    right: 32px;
+    cursor: pointer;
+    background-color: #fff;
+}
+
+.modal__delete-item-button:hover {
+    opacity: 0.5;
 }
