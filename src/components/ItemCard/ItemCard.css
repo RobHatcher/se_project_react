@@ -1,24 +1,31 @@
 .card {
-    width: 323px;
-    height: 326px;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    border: 1px solid #0000004D;
-    border-radius: 20px;
-    overflow: hidden;
+  width: 323px;
+  height: 326px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  border: 1px solid #0000004d;
+  border-radius: 20px;
+  overflow: hidden;
 }
 
 .card__name {
-    position: absolute;
-    margin: 0;
-    top: 15px;
-    border-radius: 4px;
-    background-color: #ffffff;
-    padding: 2px 12px 2px 12px;
-    font-family: "CabinetGrotesk-meidum" serif;
+  position: absolute;
+  margin: 0;
+  top: 15px;
+  border-radius: 4px;
+  background-color: #ffffff;
+  padding: 2px 12px 2px 12px;
+  font-family: "CabinetGrotesk-meidum" serif;
+  font-size: 16px;
+  line-height: 20px;
+  color: #00000099;
+  text-align: center;
 }
 
 .card__image {
-    width: 100%;
+  width: 100%;
+  cursor: pointer;
+  border-radius: 10px;
+  border: 1px solid #0000004d;
 }

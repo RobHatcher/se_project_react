@@ -30,13 +30,20 @@
 .header__date-and-location {
     margin: 0;
     font-family: "CabinetGrotesk", serif;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
 }
 
 .header__add-clothes-btn {
     font-family: "CabinetGrotesk", serif;
     margin: 0 20px 0 auto;
     border: none;
-    background-color: transparent;
+    background-color: #f3f3f3;
+    font-size: 20px;
+    list-style: 24px;
+    cursor: pointer;
+    font-weight: 700;
 }
 
 .header__user-container {
@@ -48,4 +55,7 @@
 .header__username {
     font-family: "CabinetGrotesk", serif;
     margin: 0;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
 }
