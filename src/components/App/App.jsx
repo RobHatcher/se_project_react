@@ -52,11 +52,11 @@ function App() {
 
   function onDeleteItem() {
     deleteClothingItem(selectedCard)
-      .then((data) => {
-        getClothingItems().then((data) => {
-          setClothingItems(data);
-          closeActiveModal();
-        });
+      .then(() => {
+        setClothingItems((prevItems) =>
+          prevItems.filter((item) => item._id !== selectedCard._id)
+        );
+        closeActiveModal();
       })
       .catch(console.error);
   }
@@ -98,7 +98,6 @@ function App() {
                 <Main
                   weatherData={weatherData}
                   onCardClick={handleCardClick}
-                  currentTemperatureUnit={currentTemperatureUnit}
                   clothingItems={clothingItems}
                 />
               }
