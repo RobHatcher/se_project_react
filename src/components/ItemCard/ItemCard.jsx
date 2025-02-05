@@ -5,24 +5,16 @@ import unliked from "../../assets/unliked.svg";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function ItemCard({ item, onCardClick, onCardLike }) {
-  const [isLiked, setIsLiked] = useState(false);
-  const [isLikedBy, setIsLikedBy] = useState([]);
   const user = useContext(CurrentUserContext);
   const handleCardClick = () => {
     onCardClick(item);
   };
 
-  const handleLike = () => {
-    onCardLike({ _id: item._id, isLiked: item.likes });
-    setIsLiked(!isLiked);
-    setIsLikedBy([]);
-  };
+  const isLiked = item.likes.some((id) => id === user._id);
 
-  useEffect(() => {
-    if (item.likes.includes(user._id) || isLikedBy.includes(user._id)) {
-      setIsLiked(true);
-    }
-  }, [user]);
+  const handleLike = () => {
+    onCardLike({ _id: item._id, isLiked, user });
+  };
 
   return (
     <li className="card">
