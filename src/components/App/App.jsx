@@ -123,7 +123,6 @@ function App() {
 
   const handleLogin = ({ email, password }) => {
     setIsLoading(true);
-    // TODO: load profile page
     auth
       .onLogin(email, password)
       .then((data) => {

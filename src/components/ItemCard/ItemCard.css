@@ -41,6 +41,8 @@
 }
 
 .card__like_btn {
+  background-color: transparent;
+  border: none;
   width: 20px;
   height: 18px;
   padding: 0;
