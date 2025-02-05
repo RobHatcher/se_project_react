@@ -57,4 +57,35 @@
     margin: 0;
     font-weight: 700;
     line-height: 24px;
+    align-self: center;
+}
+
+.header__signup-btn {
+    border: none;
+    background: transparent;
+}
+
+.header__signin-btn {
+    border: none;
+    background: transparent;
+}
+
+.header__avatar {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.header__avatar-fallback {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    text-transform: uppercase;
+    padding: 0;
 }

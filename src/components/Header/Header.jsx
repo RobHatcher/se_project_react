@@ -1,14 +1,22 @@
-import ToggleSwitch from "../ToogleSwitch/ToggleSwitch";
+import { useContext } from "react";
 import "./Header.css";
+import ToggleSwitch from "../ToogleSwitch/ToggleSwitch";
 import { Link } from "react-router-dom";
 import logo from "../../assets/logo.svg";
-import avatar from "../../assets/avatar.png";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-function Header({ handleAddClick, weatherData }) {
+function Header({
+  handleAddClick,
+  handleSignupClick,
+  handleSigninClick,
+  isLoggedIn,
+  weatherData,
+}) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
   });
+  const currentUser = useContext(CurrentUserContext);
 
   return (
     <header className="header">
@@ -22,23 +30,50 @@ function Header({ handleAddClick, weatherData }) {
       </div>
       <div className="header__wrapper-right">
         <ToggleSwitch />
-        <button
-          onClick={handleAddClick}
-          type="button"
-          className="header__add-clothes-btn"
-        >
-          + ADD CLOTHES
-        </button>
-        <Link to="/profile" className="header__link">
-          <div className="header__user-container">
-            <p className="header__username">Terrance Tegegne</p>
-            <img
-              src={avatar}
-              alt="Terrence Tegegne"
-              className="header__avatar"
-            />
-          </div>
-        </Link>
+        {isLoggedIn ? (
+          <>
+            <button
+              onClick={handleAddClick}
+              type="button"
+              className="header__add-clothes-btn"
+            >
+              + ADD CLOTHES
+            </button>
+            <Link to="/profile" className="header__link">
+              <div className="header__user-container">
+                <p className="header__username">{currentUser.name}</p>
+                {currentUser.avatar ? (
+                  <img
+                    src={currentUser.avatar}
+                    alt="avatar"
+                    className="header__avatar"
+                  />
+                ) : (
+                  <div classname="header__avatar header__avatar-fallback">
+                    {firstLetter.toUpperCase()}
+                  </div>
+                )}
+              </div>
+            </Link>
+          </>
+        ) : (
+          <>
+            <button
+              type="button"
+              className="header__signup-btn"
+              onClick={handleSignupClick}
+            >
+              Sign Up
+            </button>
+            <button
+              type="button"
+              className="header__signin-btn"
+              onClick={handleSigninClick}
+            >
+              Log In
+            </button>
+          </>
+        )}
       </div>
     </header>
   );
