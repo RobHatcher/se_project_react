@@ -1,4 +1,4 @@
-// React 
+// React
 import React from "react";
 import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
@@ -71,7 +71,7 @@ function App() {
   const handleSignoutClick = () => {
     localStorage.removeItem("jwt");
     setIsLoggedIn(false);
-  }
+  };
 
   const handleProfileClick = () => {
     setActiveModal("edit-profile");
@@ -167,7 +167,7 @@ function App() {
           .catch((err) => console.log(err))
       : removeCardLike(_id, token)
           .then((updatedCard) => {
-            setClothingItems((cards) => 
+            setClothingItems((cards) =>
               cards.map((item) => (item._id === _id ? updatedCard : item))
             );
           })
@@ -188,7 +188,7 @@ function App() {
       });
   };
 
-// useEffects
+  // useEffects
   useEffect(() => {
     if (!activeModal) return;
 
@@ -250,6 +250,7 @@ function App() {
                 path="/"
                 element={
                   <Main
+                    isLoggedIn={isLoggedIn}
                     weatherData={weatherData}
                     onCardClick={handleCardClick}
                     clothingItems={clothingItems}
@@ -268,6 +269,7 @@ function App() {
                       handleProfileClick={handleProfileClick}
                       handleSignoutClick={handleSignoutClick}
                       onCardLike={handleCardLike}
+                      isLoggedIn={isLoggedIn}
                     />
                   </ProtectedRoute>
                 }
