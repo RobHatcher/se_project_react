@@ -17,6 +17,7 @@ import AddItemModal from "../AddItemModal/AddItemModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
 import EditProfileModal from "../EditProfileModal/EditProfileModal.jsx";
+import DeleteConfirmationModal from "../DeleteConfirmationModal/DeleteConfirmationModal.jsx";
 // other imports
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
@@ -81,25 +82,34 @@ function App() {
     setActiveModal("");
   };
 
+  const openConfirmationModal = () => {
+    setActiveModal("delete");
+  }
+
   const onAddItem = ({ name, imageUrl, weather }) => {
-    addClothingItem({ name, imageUrl, weather })
+    setIsLoading(true);
+    return addClothingItem({ name, imageUrl, weather })
       .then((data) => {
-        setClothingItems((prev) => [data, ...prev]);
+        setClothingItems([data, ...clothingItems]);
         closeActiveModal();
+        setIsLoading(false);
       })
       .catch(console.error);
   };
 
-  function onDeleteItem() {
-    deleteClothingItem(selectedCard)
+  const onDeleteItem = () => {
+    setIsLoading(true);
+    return deleteClothingItem(selectedCard._id)
       .then(() => {
-        setClothingItems((prevItems) =>
-          prevItems.filter((item) => item._id !== selectedCard._id)
-        );
+        const itemList = clothingItems.filter((item) => {
+          return item._id !== selectedCard._id;
+        });
+        setClothingItems(itemList);
         closeActiveModal();
+        setIsLoading(false);
       })
       .catch(console.error);
-  }
+  };
 
   const handleToggleSwitchChange = () => {
     currentTemperatureUnit === "F"
@@ -127,6 +137,7 @@ function App() {
       .onLogin(email, password)
       .then((data) => {
         localStorage.setItem("jwt", data.token);
+        console.log(data.user);
         setCurrentUser(data.user);
         setIsLoggedIn(true);
         closeActiveModal();
@@ -289,15 +300,22 @@ function App() {
               activeModal={activeModal}
               card={selectedCard}
               onClose={closeActiveModal}
-              onDelete={onDeleteItem}
+              onDelete={openConfirmationModal}
             />
           )}
+          <DeleteConfirmationModal
+            isOpen={activeModal === "delete"}
+            closeActiveModal={closeActiveModal}
+            onDelete={onDeleteItem}
+            buttonText={isLoading ? "Saving" : "Yes, Delete Item"}
+          />
           {activeModal === "register" && (
             <RegisterModal
               closeActiveModal={closeActiveModal}
               isOpen={activeModal === "register"}
               onRegister={handleRegisterUser}
               handleSignupClick={handleSignupClick}
+              handleSigninClick={handleSigninClick}
               buttonText={isLoading ? "Saving" : "Signup"}
             />
           )}
@@ -307,6 +325,7 @@ function App() {
               isOpen={activeModal === "login"}
               onLogin={handleLogin}
               handleSigninClick={handleSigninClick}
+              handleSignupClick={handleSignupClick}
               buttonText={isLoading ? "Saving" : "Login"}
             />
           )}

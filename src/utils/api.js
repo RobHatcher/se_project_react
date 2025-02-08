@@ -36,8 +36,8 @@ function addClothingItem({ _id, name, imageUrl, weather }) {
   });
 }
 
-function deleteClothingItem(item) {
-  return request(`${baseUrl}/items/${item._id}`, {
+function deleteClothingItem(cardId) {
+  return request(`${baseUrl}/items/${cardId}`, {
     method: "DELETE",
     headers: authorization,
   });
