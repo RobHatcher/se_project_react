@@ -1,3 +1,5 @@
+import { request } from "./api";
+
 const baseUrl = "http://localhost:3001";
 const headers = {
   Accept: "application/json",
@@ -6,10 +8,6 @@ const headers = {
 
 export function checkResponse(res) {
   return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-}
-
-export function request(url, options) {
-  return fetch(url, options).then(checkResponse);
 }
 
 export function onRegister(name, email, password, avatar) {

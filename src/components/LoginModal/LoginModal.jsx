@@ -9,8 +9,6 @@ const LoginModal = ({
   handleSigninClick,
   handleSignupClick,
 }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const { values, handleChange, setValues } = useForm({
     email: "",
     password: "",
@@ -22,8 +20,10 @@ const LoginModal = ({
   };
 
   function resetForm() {
-    setEmail("");
-    setPassword("");
+    setValues({
+      email: "",
+      password: "",
+    });
   }
 
   useEffect(() => {
@@ -71,7 +71,7 @@ const LoginModal = ({
         />
       </label>
       <div>
-        <button type="submit" className="modal__submit" onClick={handleSubmit}>
+        <button type="submit" className="modal__submit">
           Sign In
         </button>
         <button

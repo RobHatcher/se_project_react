@@ -9,10 +9,6 @@ const RegisterModal = ({
   handleSigninClick,
   isOpen,
 }) => {
-  const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
-  const [password, setPassword] = useState("");
-  const [avatar, setAvatar] = useState("");
   const { values, handleChange, setValues } = useForm({
     _id: null,
     email: "",
@@ -27,10 +23,12 @@ const RegisterModal = ({
   };
 
   function resetForm() {
-    setName("");
-    setAvatar("");
-    setEmail("");
-    setPassword("");
+    setValues({
+      email: "",
+      password: "",  
+      name: "",
+      avatar: "",
+    });
   }
 
   useEffect(() => {
@@ -104,7 +102,7 @@ const RegisterModal = ({
         />
       </label>
       <div className="modal__button-wrapper">
-        <button className="modal__submit">Sign Up</button>
+        <button type="submit" className="modal__submit">Sign Up</button>
         <button className="modal__or-register-btn" onClick={handleSigninClick}>
           {" "}
           or Log In

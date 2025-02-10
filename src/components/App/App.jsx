@@ -92,6 +92,8 @@ function App() {
       .then((data) => {
         setClothingItems([data, ...clothingItems]);
         closeActiveModal();
+      })
+      .finally(() => {
         setIsLoading(false);
       })
       .catch(console.error);
@@ -106,6 +108,8 @@ function App() {
         });
         setClothingItems(itemList);
         closeActiveModal();
+      })
+      .finally(() => {
         setIsLoading(false);
       })
       .catch(console.error);

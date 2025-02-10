@@ -78,4 +78,5 @@ export {
   editProfile,
   addCardLike,
   removeCardLike,
+  request,
 };
