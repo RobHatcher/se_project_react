@@ -1,6 +1,6 @@
 import { request } from "./api";
 
-const baseUrl = "http://localhost:3001";
+import { baseUrl } from "../utils/constants";
 const headers = {
   Accept: "application/json",
   "Content-Type": "application/json",
