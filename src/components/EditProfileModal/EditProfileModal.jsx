@@ -16,10 +16,8 @@ const EditProfileModal = ({ isOpen, closeActiveModal, handleEditProfile }) => {
   };
 
   const handleSubmit = (e) => {
-    console.log(currentUser);
     e.preventDefault();
     handleEditProfile({ name, avatar });
-    console.log(name, avatar);
   };
 
   const currentUserValue = () => {

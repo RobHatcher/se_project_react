@@ -141,7 +141,6 @@ function App() {
       .onLogin(email, password)
       .then((data) => {
         localStorage.setItem("jwt", data.token);
-        console.log(data.user);
         setCurrentUser(data.user);
         setIsLoggedIn(true);
         closeActiveModal();
@@ -160,8 +159,6 @@ function App() {
         return res;
       })
       .then((res) => {
-        console.log("Updated user:", res);
-        console.log("Current user state:", currentUser);
         closeActiveModal();
       })
       .catch(console.error)
@@ -171,10 +168,12 @@ function App() {
   };
 
   const handleCardLike = ({ _id, isLiked }) => {
+    console.log('Handle card like called with:', { _id, isLiked });
     const token = localStorage.getItem("jwt");
     !isLiked
       ? addCardLike(_id, token)
           .then((updatedCard) => {
+            console.log('After like:', updatedCard);
             setClothingItems((cards) =>
               cards.map((item) => (item._id === _id ? updatedCard : item))
             );
@@ -182,6 +181,7 @@ function App() {
           .catch((err) => console.log(err))
       : removeCardLike(_id, token)
           .then((updatedCard) => {
+            console.log('After unlike:', updatedCard);
             setClothingItems((cards) =>
               cards.map((item) => (item._id === _id ? updatedCard : item))
             );

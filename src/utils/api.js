@@ -1,4 +1,6 @@
 import { baseUrl } from "../utils/constants";
+
+
 const headers = {
   "Content-Type": "application/json",
 };
@@ -67,6 +69,10 @@ function removeCardLike(id) {
   return request(`${baseUrl}/items/${id}/likes`, {
     method: "DELETE",
     headers: authorization(),
+  })
+  .then(response => {
+    console.log('API Response from unlike:', response);
+    return response;
   });
 }
 
